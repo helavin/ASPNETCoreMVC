@@ -14,7 +14,7 @@ namespace DataLayer.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.7")
+                .HasAnnotation("ProductVersion", "3.1.8")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -33,7 +33,7 @@ namespace DataLayer.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Directory");
+                    b.ToTable("Directories");
                 });
 
             modelBuilder.Entity("DataLayer.Entities.Material", b =>
@@ -56,7 +56,7 @@ namespace DataLayer.Migrations
 
                     b.HasIndex("DirectoryId");
 
-                    b.ToTable("Material");
+                    b.ToTable("Materials");
                 });
 
             modelBuilder.Entity("DataLayer.Entities.Material", b =>
