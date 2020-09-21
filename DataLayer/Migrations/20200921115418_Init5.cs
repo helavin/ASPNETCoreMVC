@@ -2,7 +2,7 @@
 
 namespace DataLayer.Migrations
 {
-    public partial class Init3 : Migration
+    public partial class Init5 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

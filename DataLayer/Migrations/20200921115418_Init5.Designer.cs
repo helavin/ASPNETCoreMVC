@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataLayer.Migrations
 {
     [DbContext(typeof(EFDBContext))]
-    [Migration("20200921094134_Init3")]
-    partial class Init3
+    [Migration("20200921115418_Init5")]
+    partial class Init5
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
