@@ -4,7 +4,11 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 
+using DataLayer;
+using DataLayer.Entities;
+
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
 using WebApplication1.Models;
@@ -15,15 +19,23 @@ namespace WebApplication1.Controllers
     {
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        //public HomeController(ILogger<HomeController> logger)
+        //{
+        //    _logger = logger;
+        //}
+
+        private EFDBContext _context;
+
+        public HomeController(EFDBContext context)
         {
-            _logger = logger;
+            _context = context;
         }
 
         public IActionResult Index()
         {
             HelloModel _model = new HelloModel() { HelloMessage = "Hi there!" };
-            return View(_model);
+            List<Directory> directories = _context.Directories.Include(x => x.Materials).ToList();
+            return View(directories);// (_model);
         }
 
         public IActionResult Privacy()
