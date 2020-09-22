@@ -4,6 +4,9 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 
+using BusinessLayer;
+using BusinessLayer.Interfaces;
+
 using DataLayer;
 using DataLayer.Entities;
 
@@ -17,24 +20,27 @@ namespace WebApplication1.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        //private readonly ILogger<HomeController> _logger;
 
         //public HomeController(ILogger<HomeController> logger)
         //{
         //    _logger = logger;
         //}
 
-        private EFDBContext _context;
+        //private EFDBContext _context;
+        private DataManager _dataManager;
 
-        public HomeController(EFDBContext context)
+        public HomeController(/*EFDBContext context,*/ DataManager manager)
         {
-            _context = context;
+            //_context = context;
+            _dataManager = manager;
         }
 
         public IActionResult Index()
         {
             HelloModel _model = new HelloModel() { HelloMessage = "Hi there!" };
-            List<Directory> directories = _context.Directories.Include(x => x.Materials).ToList();
+            //List<Directory> directories = _context.Directories.Include(x => x.Materials).ToList();
+            List<Directory> directories = _dataManager.DirectoryRepository.GetDirectories(true).ToList();
             return View(directories);// (_model);
         }
 

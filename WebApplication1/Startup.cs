@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
+using BusinessLayer;
+using BusinessLayer.Implementations;
+using BusinessLayer.Interfaces;
+
 using DataLayer;
 
 using Microsoft.AspNetCore.Builder;
@@ -28,7 +32,13 @@ namespace WebApplication1
         public void ConfigureServices(IServiceCollection services)
         {
             var connection = Configuration.GetConnectionString("DefaultConnection");
+
             services.AddDbContext<EFDBContext>(options => options.UseSqlServer(connection, b => b.MigrationsAssembly("DataLayer")));
+
+            services.AddTransient<IDirectoryRepository, EFDirectoryRepository>();
+            services.AddTransient<IMaterialRepository, EFMaterialRepository>();
+
+            services.AddScoped<DataManager>();
             services.AddMvc();
             //services.AddControllersWithViews();
         }
