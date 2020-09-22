@@ -1,11 +1,31 @@
-﻿@model HelloModel
+﻿@*@model HelloModel*@
+
+@model List<DataLayer.Entities.Directory>
 @{
     ViewData["Title"] = "Home Page 1";
 }
 
 <div class="row">
     <div class="col-md-12">
-        <h1>@Model.HelloMessage</h1>
+        <ul>
+            @foreach (var item in Model)
+            {
+                <li>
+                    <h2>@item.Title</h2>
+                    @if (item.Materials == null)
+                        continue;
+                    <ul>
+                        @foreach (var subItem in item.Materials)
+                        {
+                            <li>
+                                @subItem.Title
+                            </li>
+                        }
+                    </ul>
+                </li>
+            }
+        </ul>
+        @*<h1>@Model.HelloMessage</h1>*@
     </div>
 </div>
 

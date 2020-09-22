@@ -2,12 +2,12 @@
 
 namespace DataLayer.Migrations
 {
-    public partial class Init1 : Migration
+    public partial class Init5 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Directory",
+                name: "Directories",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -17,11 +17,11 @@ namespace DataLayer.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Directory", x => x.Id);
+                    table.PrimaryKey("PK_Directories", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Material",
+                name: "Materials",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -32,28 +32,28 @@ namespace DataLayer.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Material", x => x.Id);
+                    table.PrimaryKey("PK_Materials", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Material_Directory_DirectoryId",
+                        name: "FK_Materials_Directories_DirectoryId",
                         column: x => x.DirectoryId,
-                        principalTable: "Directory",
+                        principalTable: "Directories",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Material_DirectoryId",
-                table: "Material",
+                name: "IX_Materials_DirectoryId",
+                table: "Materials",
                 column: "DirectoryId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Material");
+                name: "Materials");
 
             migrationBuilder.DropTable(
-                name: "Directory");
+                name: "Directories");
         }
     }
 }
