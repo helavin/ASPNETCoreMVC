@@ -1,6 +1,8 @@
 ﻿@*@model HelloModel*@
+@using PresentationLayer.Models;
+@using DataLayer.Enums;
 
-@model List<DataLayer.Entities.Directory>
+@model List<DirectoryViewModel> //<DataLayer.Entities.Directory>
 @{
     ViewData["Title"] = "Home Page 1";
 }
@@ -11,16 +13,17 @@
             @foreach (var item in Model)
             {
                 <li>
-                    <h2>@item.Title</h2>
+                    <h2> <a asp-action="Index" asp-controller="Page" asp-route-pageId="@item.Directory.Id" asp-route-pageType="@PageEnums.PageType.Directory">@item.Directory.Title</a></h2>
                     @if (item.Materials == null)
                         continue;
                     <ul>
-                        @foreach (var subItem in item.Materials)
-                        {
-                            <li>
-                                @subItem.Title
-                            </li>
-                        }
+                        @if (item.Materials != null)
+                            @foreach (var subItem in item.Materials)
+                            {
+                                <li>
+                                    <a asp-action="Index" asp-controller="Page" asp-route-pageId="@subItem.Material.Id" asp-route-pageType="@PageEnums.PageType.Material">@subItem.Material.Title</a>
+                                </li>
+                            }
                     </ul>
                 </li>
             }

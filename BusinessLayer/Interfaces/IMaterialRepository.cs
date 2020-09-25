@@ -9,7 +9,7 @@ namespace BusinessLayer.Interfaces
     public interface IMaterialRepository
     {
         IEnumerable<Material> GetMaterials(bool includeDirectory = false);
-        Material GetMaterialByID(int id, bool includeDirectory = false);
+        Material GetMaterialById(int id, bool includeDirectory = false);
         void SaveMaterial(Material material);
         void DeleteMaterial(Material material);
     }

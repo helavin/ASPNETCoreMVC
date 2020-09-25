@@ -1,0 +1,44 @@
+﻿@using PresentationLayer.Models;
+@using DataLayer.Enums;
+@model PageViewModel;
+
+@if (Model is DirectoryViewModel directoryView)
+{
+    <h2>@directoryView.Directory.Title</h2>
+    <p>@Html.Raw(directoryView.Directory.Html);</p>
+
+    <ul>
+        @if (directoryView.Materials != null)
+            @foreach (var subItem in directoryView.Materials)
+            {
+                <li>
+                    <a asp-action="Index" asp-controller="Page" asp-route-pageId="@subItem.Material.Id" asp-route-pageType="@PageEnums.PageType.Material">@subItem.Material.Title</a>
+                </li>
+            }
+    </ul>
+}
+else if (Model is MaterialViewModel materialView)
+{
+    <h2>@materialView.Material.Title</h2>
+    <p>@Html.Raw(materialView.Material.Html);</p>
+    @if (materialView.NextMaterial != null)
+    {
+        <ul>
+            <li>
+                <a asp-action="Index" asp-controller="Page" asp-route-pageId="@materialView.NextMaterial.Id" asp-route-pageType="@PageEnums.PageType.Material">@materialView.NextMaterial.Title</a>        
+            </li>
+        </ul>
+        
+    }
+}
+
+@switch (ViewBag.PageType)
+{
+    case DataLayer.Enums.PageEnums.PageType.Directory:
+        <h2>@((DirectoryViewModel)Model).Directory.Title</h2>
+        break;
+    case DataLayer.Enums.PageEnums.PageType.Material:
+        break;
+    default:
+        break;
+}

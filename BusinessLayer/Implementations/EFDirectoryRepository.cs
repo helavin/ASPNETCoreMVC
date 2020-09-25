@@ -29,7 +29,7 @@ namespace BusinessLayer.Implementations
 
         }
 
-        public Directory GetDirectoryByID(int id, bool includeMaterials = false)
+        public Directory GetDirectoryById(int id, bool includeMaterials = false)
         {
             if (includeMaterials)
                 return context.Set<Directory>().Include(x => x.Materials)

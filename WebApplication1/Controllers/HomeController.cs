@@ -14,6 +14,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
+using PresentationLayer;
+using PresentationLayer.Models;
+
 using WebApplication1.Models;
 
 namespace WebApplication1.Controllers
@@ -29,18 +32,21 @@ namespace WebApplication1.Controllers
 
         //private EFDBContext _context;
         private DataManager _dataManager;
+        private ServicesManager _servicesManager;
 
         public HomeController(/*EFDBContext context,*/ DataManager manager)
         {
             //_context = context;
             _dataManager = manager;
+            _servicesManager = new ServicesManager(manager);
         }
 
         public IActionResult Index()
         {
             HelloModel _model = new HelloModel() { HelloMessage = "Hi there!" };
             //List<Directory> directories = _context.Directories.Include(x => x.Materials).ToList();
-            List<Directory> directories = _dataManager.DirectoryRepository.GetDirectories(true).ToList();
+            //List<Directory> directories = _dataManager.DirectoryRepository.GetDirectories(true).ToList();
+            List<DirectoryViewModel> directories = _servicesManager.DirectoryService.GetDirectoryViewModels();
             return View(directories);// (_model);
         }
 

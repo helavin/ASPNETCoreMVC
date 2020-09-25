@@ -28,7 +28,7 @@ namespace BusinessLayer.Implementations
                 return context.Materials.ToList();
         }
 
-        public Material GetMaterialByID(int id, bool includeDirectory = false)
+        public Material GetMaterialById(int id, bool includeDirectory = false)
         {
             if (includeDirectory)
                 return context.Set<Material>().Include(x => x.Directory)

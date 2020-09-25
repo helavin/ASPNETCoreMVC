@@ -13,11 +13,11 @@ namespace BusinessLayer
 
         public DataManager(IDirectoryRepository directory, IMaterialRepository material)
         {
-            _directoryRepository = directory;
-            _materialRepository = material;
+            this._directoryRepository = directory;
+            this._materialRepository = material;
         }
 
-        public IDirectoryRepository DirectoryRepository { get { return _directoryRepository; } }
-        public IMaterialRepository MaterialRepository { get { return _materialRepository; } }
+        public IDirectoryRepository DirectoryRepository { get { return this._directoryRepository; } }
+        public IMaterialRepository MaterialRepository { get { return this._materialRepository; } }
     }
 }

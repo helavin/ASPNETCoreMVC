@@ -31,8 +31,6 @@ namespace DataLayer
                 context.Materials.Add(new Material() { Title = "Third Material", Html = "<b>Material Content3</b>", DirectoryId = dirs.Last().Id });
                 context.SaveChanges();
             }
-
-
         }
     }
 }
